@@ -17,7 +17,9 @@ const port = process.env.PORT || 4000;
 // Liste des origines autorisées
 const allowedOrigins = [
   "http://localhost:3000", // Développement local
-  "https://host-cycle.vercel.app", // URL de production
+  "https://host-cycle.vercel.app", // URL principale
+  "https://host-cycle-q4vx-fwnzz9fow-aymens-projects-9ad69811.vercel.app", // Ajout du sous-domaine spécifique
+  "https://host-cycle-ji9x-git-main-aymens-projects-9ad69811.vercel.app", // Ajout du backend si nécessaire
 ];
 
 // Middleware CORS
