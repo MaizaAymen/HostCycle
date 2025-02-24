@@ -242,7 +242,7 @@ export const sendVerifyOtp= async(req,res)=>{
                   </head>
                   <body>
                       <div class="container">
-                          <h1>Welcome to Our App!</h1>
+                          <h1>HI  ${user.name} ! </h1>
                           <p>Dear ${user.name},</p>
                           <p>Thank you for registering with us. We are excited to have you onboard.</p>
                           <p>To complete your registration, please verify your account using the One Time Password (OTP) provided below:</p>
