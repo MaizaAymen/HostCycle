@@ -252,14 +252,15 @@ export const getAllWebsites = async (req, res) => {
 
     // Extract websites from users
     const websites = users.flatMap(user =>
-      user.websites.map(website => ({
+      user.websites ? user.websites.map(website => ({
         _id: website._id,
         name: website.name,
         url: website.url,
         description: website.description,
         owner: user.name, // Include the owner's name
-      }))
+      })) : []
     );
+    
 
     res.json({ success: true, websites });
   } catch (error) {
