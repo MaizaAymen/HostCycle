@@ -11,6 +11,6 @@ userRouter.get('/:userId',getUserById);
 
 userRouter.delete('/users/:id', deleteUser); 
 userRouter.post("/addHostingCycleToCart/:userId",userAuth,addHostingCycleToCart);
-userRouter.get('/getAllWebsites',getAllWebsites);
+userRouter.get("/getAllWebsites",getAllWebsites);
 
 export default userRouter;
