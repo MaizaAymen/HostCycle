@@ -241,5 +241,30 @@ export const addnamewebsite= async (req, res) => {
 };
 
 // Get all users for the admin dashboard
+export const getAllWebsites = async (req, res) => {
+  try {
+    // Find all users and populate their websites field
+    const users = await userModel.find().populate("websites");
+
+    if (!users || users.length === 0) {
+      return res.json({ success: false, message: "No users found" });
+    }
+
+    // Extract websites from users
+    const websites = users.flatMap(user =>
+      user.websites.map(website => ({
+        _id: website._id,
+        name: website.name,
+        url: website.url,
+        description: website.description,
+        owner: user.name, // Include the owner's name
+      }))
+    );
+
+    res.json({ success: true, websites });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
 
 

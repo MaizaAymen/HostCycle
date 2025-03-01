@@ -24,6 +24,7 @@ import Ahmed from './Chat/test.jsx';
 import StatsSection from './components/State.jsx';
 import ChatBot from './Chatbot/Chatbot.jsx';
 import News1 from './auth/news1.jsx';
+import WebsitesList from './components/showWebsites.jsx';
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
         <ToastContainer />
         <Routes>
         <Route path="/news1" element={<News1 />} />
-
+        <Route path="/WebsitesList" element={<WebsitesList />} />
           <Route path="/" element={<Home />} />
           <Route path="/ChatBot" element={<ChatBot />} />
           <Route path="/StatsSection" element={<StatsSection />} />
