@@ -22,11 +22,20 @@ const WebsitesList = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      setWebsites(response.data.data);
-      setFilteredWebsites(response.data.data);
-      setLoading(false);
+
+      console.log("API Response:", response.data); // Vérifier la structure des données
+
+      if (response.data.success && response.data.websites) {
+        setWebsites(response.data.websites);
+        setFilteredWebsites(response.data.websites);
+      } else {
+        setError("No websites found");
+      }
+      
     } catch (error) {
+      console.error("Error fetching websites:", error);
       setError("Failed to fetch websites");
+    } finally {
       setLoading(false);
     }
   };
