@@ -243,27 +243,35 @@ export const addnamewebsite= async (req, res) => {
 // Get all users for the admin dashboardexport const getAllWebsites = async (req, res) => {
   export const getAllWebsites = async (req, res) => {
     try {
-      const users = await userModel.find().populate("websites");
-  
-      if (!users || users.length === 0) {
-        return res.status(404).json({ success: false, message: "No users found" });
-      }
-  
-      const websites = users.flatMap(user =>
-        user.websites?.map(website => ({
-          _id: website._id,
-          name: website.name,
-          url: website.url,
-          description: website.description,
-          owner: user.name, // Ajout du propriétaire
-        })) || []
-      );
-  
-      res.json({ success: true, websites });
-    } catch (error) {
-      console.error("Error fetching websites:", error);
-      return res.status(500).json({ success: false, message: error.message });
-    }
-  };
-  
+        // Récupérer tous les utilisateurs et leurs websites avec les champs nécessaires
+        const users = await userModel.find()
+            .populate({
+                path: "websites",
+                select: "_id name url description"
+            })
+            .select("name websites") // Ne récupérer que le nom et les websites
+            .lean(); // Optimisation des requêtes
 
+        if (!users || users.length === 0) {
+            return res.status(404).json({ success: false, message: "No users found" });
+        }
+
+        // Extraire les websites avec leur propriétaire
+        const websites = users.flatMap(user => 
+            Array.isArray(user.websites) ? 
+            user.websites.map(website => ({
+                _id: website._id,
+                name: website.name,
+                url: website.url,
+                description: website.description,
+                owner: user.name, // Ajout du propriétaire
+            })) : []
+        );
+
+        res.json({ success: true, websites });
+
+    } catch (error) {
+        console.error("Error fetching websites:", error);
+        return res.status(500).json({ success: false, message: error.message });
+    }
+};
