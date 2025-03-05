@@ -74,6 +74,12 @@
                                                     View users
                                                 </Link>
                                             </li>
+                                            <li>
+                                                <Link to="/WebsitesList" className="flex items-center p-2 text-gray-900 rounded-lg">
+                                                    <FontAwesomeIcon icon={faUsers} className="me-2" />
+                                                    View Websites
+                                                </Link>
+                                            </li>
                                         </ul>
                                     </div>
                 </aside>
