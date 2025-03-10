@@ -39,12 +39,7 @@ app.use(
 );
 
 // Middleware pour gérer les requêtes préflight OPTIONS
-app.options("*", (req, res) => {
-  res.header("Access-Control-Allow-Origin", req.headers.origin);
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.sendStatus(200);
-});
+app.options("*", cors());
 
 // Middlewares de sécurité et utilitaires
 app.use(helmet());
@@ -64,11 +59,7 @@ app.use((err, req, res, next) => {
 });
 
 // Démarrer le serveur
-app.listen(port, () => console.log(`✅ Serlver started on port: ${port}`));
-
-
-
-
+app.listen(port, () => console.log(`✅ Server started on port: ${port}`));
 /*
 import express from "express";
 import cors from "cors";
