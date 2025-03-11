@@ -42,7 +42,7 @@ const Aymen = () => {
         setIsLogin(false);
         setUserData(null);
         setShowDropdown(false);
-        navigate("/Home");
+        navigate("/login");
       }
     } catch (error) {
       console.error(error.response ? error.response.data : error.message);
